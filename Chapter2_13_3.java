@@ -103,3 +103,20 @@ public class Hero {
 // メリット２　フィールドの名前など、クラスの内部設計を自由に変更できる
 //           例えば将来nameフィールドの名前を変更する場合getter、setterを使用していない場合
 //           他の開発者にnameの呼び出し名を変えてもらわないといけない
+// メリット３　フィールドへのアクセスを検査できる。（setterで設定されようとしている値を検査できる）
+
+// メリット３の例）
+private String name;
+public void setName(String name) {
+    if( name == null) {
+        throw new IllegalArgumentException
+        ("名前がnullである。処理を中断");
+    } if (name.length() <= 1) {
+        throw new IllegalArgumentException
+        ("名前が短すぎる。処理を中断。");
+    } if (name.length() >= 8) {
+        throw new IllegalArgumentException
+        ("名前が長すぎる処理を中断");
+    }
+    this.name = name;
+}
